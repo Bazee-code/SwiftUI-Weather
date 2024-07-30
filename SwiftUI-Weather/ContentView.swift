@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(colors: [.blue, Color("light-blue")], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 Text("Nairobi, Kenya")
@@ -31,71 +31,11 @@ struct ContentView: View {
                 }
                 
                 HStack(spacing:20){
-                    VStack(spacing: 5){
-                        Text("Mon")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40,height: 40)
-                        Text("32°")
-                            .foregroundColor(.white)
-                    }
-                    VStack(spacing: 5){
-                        Text("Tue")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40,height: 40)
-                        Text("25°")
-                            .foregroundColor(.white)
-                    }
-                    VStack(spacing: 5){
-                        Text("Wed")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40,height: 40)
-                        Text("27°")
-                            .foregroundColor(.white)
-                    }
-                    VStack(spacing: 5){
-                        Text("Thur")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40,height: 40)
-                        Text("20°")
-                            .foregroundColor(.white)
-                    }
-                    VStack(spacing: 5){
-                        Text("Fri")
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40,height: 40)
-                        Text("15°")
-                            .foregroundColor(.white)
-                    }
+                    WeatherDayView(dayOfWeek: "Mon", imageName: "cloud.sun.fill", temperature: 50)
+                    WeatherDayView(dayOfWeek: "Tue", imageName: "sun.max.fill", temperature: 32)
+                    WeatherDayView(dayOfWeek: "Wed", imageName: "cloud.sun.fill", temperature: 22)
+                    WeatherDayView(dayOfWeek: "Thur", imageName: "cloud.sun.fill", temperature: 34)
+                    WeatherDayView(dayOfWeek: "Fri", imageName: "wind.snow", temperature: 15)
                 }
                 Spacer()
             }
@@ -108,5 +48,28 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WeatherDayView: View {
+    
+    var dayOfWeek: String
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View {
+        VStack(spacing: 5){
+            Text(dayOfWeek)
+                .font(.system(size: 20, weight: .medium, design: .default))
+                .foregroundColor(.white)
+                .padding(.top, 10)
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40,height: 40)
+            Text("\(temperature)°")
+                .foregroundColor(.white)
+        }
     }
 }
