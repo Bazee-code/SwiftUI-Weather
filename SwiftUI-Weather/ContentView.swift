@@ -10,12 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.blue, Color("light-blue")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            BackgroundView()
             VStack{
-                Text("Nairobi, Kenya")
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
+                HeaderView(textTitle: "Nairobi, Kenya", fontSize: 30, fontWeight: .medium)
                     .padding(.top, 20)
                 
                 VStack(spacing: 5){
@@ -25,9 +22,8 @@ struct ContentView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 180, height: 180)
                     
-                    Text("50°")
-                        .font(.system(size : 60, weight: .bold, design: .default))
-                        .foregroundColor(.white)
+                    HeaderView(textTitle: "50°", fontSize: 60, fontWeight: .bold)
+                    
                 }
                 
                 HStack(spacing:20){
@@ -85,5 +81,25 @@ struct WeatherDayView: View {
             Text("\(temperature)°")
                 .foregroundColor(.white)
         }
+    }
+}
+
+struct BackgroundView: View {
+    var body: some View {
+        LinearGradient(colors: [.blue, Color("light-blue")], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct HeaderView: View {
+    
+    var textTitle: String
+    var fontSize: CGFloat
+    var fontWeight: Font.Weight
+    
+    var body: some View {
+        Text(textTitle)
+            .font(.system(size: fontSize, weight: fontWeight, design: .default))
+            .foregroundColor(.white)
     }
 }
